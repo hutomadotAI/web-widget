@@ -1,0 +1,16 @@
+steps:
+
+  # Install tools
+  - id: yarn:install
+    name: gcr.io/cloud-builders/yarn
+    args: [ install ]
+
+  # Prepare locals from PO files
+  - id: yarn:translate
+    name: gcr.io/cloud-builders/yarn
+    args: [ run, translate ]
+
+  # Run integration tests, verbosity can be controlled using LOG_LEVEL variable
+  - id: docker-compose:tests
+    name: docker/compose:1.23.1 # needs to be named
+    args: [ --file, docker-compose.yml, --file, test/docker-compose.yml, run, -e, LOG_LEVEL=$_LOG_LEVEL, tester ]

@@ -1,0 +1,55 @@
+steps:
+
+  # Install tools
+  - id: yarn:install
+    name: gcr.io/cloud-builders/yarn
+    args: [ install ]
+
+  # Prepare locals from PO files
+  - id: yarn:translate
+    name: gcr.io/cloud-builders/yarn
+    args: [ run, translate ]
+
+  # Run integration again
+  - id: docker-compose:tests
+    name: docker/compose:1.23.1 # needs to be named
+    args: [ --file, docker-compose.yml, --file, test/docker-compose.yml, run, -e, LOG_LEVEL=$_LOG_LEVEL, tester ]
+
+  # Prepare config data
+  #
+  # Pass environement settings to file we then use as config
+  - id: debian:config
+    name: debian
+    entrypoint: sh
+    args:
+      - -c
+      - |
+        echo "
+          export const REPO_NAME = '$REPO_NAME';
+          export const BRANCH_NAME = '$BRANCH_NAME';
+          export const TAG_NAME = '$TAG_NAME';
+          export const REVISION_ID = '$REVISION_ID';
+          export const COMMIT_SHA = '$COMMIT_SHA';
+          export const SHORT_SHA = '$SHORT_SHA';
+          export const CHANNEL = '$_CHANNEL';
+          export const SERVICE = '$_SERVICE';
+          export const HUTOMA_ORIGIN = '$_HUTOMA_ORIGIN';
+          export const WIDGET_IFRAME_URL = '$_WIDGET_IFRAME_URL';
+          export const STACKDRIVER_API_KEY = '$_STACKDRIVER_API_KEY';
+        " > src/config.env.js
+
+  # Synchronize source content with the bucket.
+  #
+  # -c  Causes the rsync command to compute and compare checksums (instead of
+  #     comparing mtime) for files if the size of source and destination match.
+  # -d  Delete extra files under dst_url not found under src_url.
+  # -r  Causes directories, buckets, and bucket subdirectories to be
+  #     synchronized recursively.
+  - id: gsutil:rsync
+    name: gcr.io/cloud-builders/gsutil
+    args: [ -m, rsync, -c, -d, -r, ./src, gs://widget.hutoma.ai/$_CHANNEL ]
+
+  # Reset CDN cache, as it takes about 10min do it async
+  - id: gcloud:invalidate-cdn-cache
+    name: gcr.io/cloud-builders/gcloud
+    args: [ compute, url-maps, invalidate-cdn-cache, web-widget-lb, --path, /*, --async ]

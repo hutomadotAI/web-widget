@@ -1,0 +1,295 @@
+:focus {
+  outline: none;
+}
+
+:root{
+  --ACENT-COLOR: #2196f3;
+  --YELLOW-500: #FFC107;
+
+  --GREY-100: #ECEFF1;
+  --GREY-200: #CFD8DC;
+  --GREY-300: #B0BEC5;
+  --GREY-500: #78909C;
+  --GREY-600: #607D8B;
+  --GREY-600: #546E7A;
+  --GREY-800: #37474F;
+  --GREY-900: #263238;
+
+  --BLUE-100: #BBDEFB;
+  --BLUE-300: #64B5F6;
+  --BLUE-500: #2196F3;
+  --BLUE-700: #1976D2;
+  --BLUE-900: #0D47A1;
+
+  --RED-100: #FFCDD2;
+  --RED-300: #EF9A9A;
+  --RED-500: #F44336;
+  --RED-700: #D32F2F;
+  --RED-900: #B71C1C;
+
+  --BUBBLE-COLOR: white;
+  --BUBBLE-BACKGROUND: var(--GREY-500);
+}
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+
+  font-family: roboto, sans-serif;
+  font-smoothing: antialiased;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
+
+.widget {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#MESSAGES {
+  background-color: var(--GREY-100);
+  flex-grow: 2;
+  overflow: auto;
+  padding: 24px 8px 8px;
+}
+
+#MESSAGES.loading::after {
+  background-color: var(--BUBBLE-BACKGROUND);
+  border-radius: 1.25rem;
+  box-sizing: border-box;
+  content: url('data:image/svg+xml;charset=utf8,<svg width="36" height="12" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="white"><circle cx="30" cy="15" r="8"><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.2;1" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="60" cy="15" r="8" fill-opacity="0.3"><animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" /></circle><circle cx="90" cy="15" r="8"><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.2;1" calcMode="linear" repeatCount="indefinite" /></circle></svg>');
+  cursor: progress !important;
+  display: inline-block;
+  padding: 0.5rem 0.8rem;
+}
+
+#FORM {
+  display: flex;
+  flex: 0 0 2.25rem;
+  height: 2.25rem;
+}
+
+#INPUT {
+  border: none;
+  color: var(--GREY-600);
+  flex-grow: 2;
+  font-size: 80%;
+  font: inherit;
+  padding: 0.5rem;
+}
+
+#CLOSE {
+  background-color: var(--GREY-800);
+  border-radius: 50%;
+  border: 0;
+  color: white;
+  line-height: 2rem;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  transition: opacity 200ms;
+  width: 2rem;
+}
+
+#CLOSE:hover {
+  opacity: 0.8;
+}
+
+#FORM button {
+  background-color: transparent;
+  border: none;
+  color: var(--GREY-600);
+}
+
+#FORM button:hover {
+  color: var(--ACENT-COLOR);
+}
+
+#MIC.active {
+  color: var(--RED-500);
+}
+
+#MIC[disabled] {
+  display: none;
+}
+
+#SEND {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  #SEND {
+    display: inline-block;
+  }
+}
+
+.message {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+
+.message .text,
+.message .list,
+.message .generic .element .body {
+  background-color: var(--BUBBLE-BACKGROUND);
+  border-radius: 1.25rem;
+  box-sizing: border-box;
+  color: var(--BUBBLE-COLOR);
+  max-width: 80%;
+  overflow: hidden;
+  padding: 0.5rem 0.8rem;
+  word-break: break-word;
+}
+
+.message.me .text {
+  background-color: var(--ACENT-COLOR);
+}
+
+.message.error .text {
+  background-color: var(--YELLOW-500);
+}
+
+.message.me {
+  flex-direction: row-reverse;
+}
+
+.message .text a {
+  color: inherit;
+}
+
+.message img {
+  width: 80%;
+}
+
+.message .generic {
+  display: flex;
+  margin: 0 -0.5rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 0;
+  scroll-snap-type: x mandatory;
+}
+
+.message .generic {
+    -ms-overflow-style: none;
+
+    overflow: -moz-scrollbars-none;
+}
+.message .generic::-webkit-scrollbar {
+  display: none;
+}
+
+.message .generic .element {
+  box-sizing: border-box;
+  flex: 1 0 80%;
+  padding: 0.5rem;
+  scroll-snap-align: center;
+}
+
+.message .generic .element .body {
+  max-width: 100%;
+}
+
+.message .generic .element .body .title,
+.message .generic .element .body .subtitle {
+  margin: 0 0 1rem;
+}
+
+.message .generic .element .body img,
+.message .generic .element .buttons {
+  width: 100%;
+}
+
+.message .generic .element .body img {
+  margin: -0.5rem -0.75rem 1rem;
+  width: calc(100% + 1.5rem);
+  min-height: 39vw;
+}
+
+.message .button {
+  background-color: transparent;
+  border: 0.1rem solid var(--ACENT-COLOR);
+  box-sizing: border-box;
+  color: var(--ACENT-COLOR);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  padding: 0.5rem 0.8rem;
+  transition: color, background-color, 200ms;
+}
+
+.message .button:hover {
+  background-color: var(--ACENT-COLOR);
+  color: var(--BUBBLE-COLOR);
+}
+
+.message .button img {
+  border-radius: 50%;
+  float: left;
+  height: 1.5rem;
+  margin: -0.25rem -0.375rem;
+  margin-right: 0.375rem;
+  width: 1.5rem;
+}
+
+.message .list .element .buttons,
+.message .list .element .button {
+  border-color: initial;
+  color: inherit;
+}
+
+.message .list .element .buttons .button + .button {
+  border-color: initial;
+}
+
+.message .quickReplies {
+  width: 100%;
+}
+
+.message .quickReplies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.message .quickReplies .button {
+  border-radius: 1.5rem;
+  margin: 0.5rem;
+}
+
+.message .buttons {
+  box-sizing: border-box;
+  margin: 0.5rem 0 0;
+  width: 80%;
+}
+
+.message .buttons .button {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+.message .buttons .button + .button {
+  border-top: none;
+}
+
+.message .buttons .button:nth-child(1) {
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.message .buttons .button:nth-last-child(1) {
+  border-radius: 0 0 1.5rem 1.5rem;
+}
+
+.message .buttons .button:nth-child(1):nth-last-child(1) {
+  border-radius: 1.5rem;
+}

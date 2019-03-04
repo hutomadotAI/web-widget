@@ -1,0 +1,109 @@
+{
+  "name": "Facebook rich templates",
+  "description": "Bot for testing FB rich templates",
+  "isPrivate": false,
+  "personality": 0,
+  "confidence": 0.30000001192092896,
+  "voice": 1,
+  "language": "en-US",
+  "timezone": "Europe/Madrid",
+  "intents": [
+    {
+      "variables": [],
+      "intent_name": "Button",
+      "responses": [],
+      "user_says": [
+        "Button"
+      ],
+      "webhook": {
+        "aiid": "f2eab301-7f67-4b6d-b90c-23c1bed6e6b6",
+        "intent_name": "Button",
+        "enabled": true,
+        "endpoint": "https://europe-west1-web-widget-poc.cloudfunctions.net/sendTemplate"
+      },
+      "last_updated": "2018-12-12T14:03:56.898Z",
+      "context_in": {
+        "type": "button"
+      },
+      "context_out": {},
+      "conditions_in": [],
+      "conditions_default_response": "",
+      "reset_context_on_exit": false,
+      "conditions_out": []
+    },
+    {
+      "variables": [],
+      "intent_name": "Generic",
+      "responses": [],
+      "user_says": [
+        "generic"
+      ],
+      "webhook": {
+        "aiid": "81d86170-a6f2-4c4c-b0c4-53b21858d915",
+        "intent_name": "Generic",
+        "enabled": true,
+        "endpoint": "https://europe-west1-web-widget-poc.cloudfunctions.net/sendTemplate"
+      },
+      "last_updated": "2018-12-14T15:15:33.926Z",
+      "context_in": {
+        "type": "generic"
+      },
+      "context_out": {},
+      "conditions_in": [],
+      "conditions_default_response": "",
+      "reset_context_on_exit": false,
+      "conditions_out": []
+    },
+    {
+      "variables": [],
+      "intent_name": "Quick_Replies",
+      "responses": [],
+      "user_says": [
+        "Quick Replies"
+      ],
+      "webhook": {
+        "aiid": "f2eab301-7f67-4b6d-b90c-23c1bed6e6b6",
+        "intent_name": "Quick_Replies",
+        "enabled": true,
+        "endpoint": "https://europe-west1-web-widget-poc.cloudfunctions.net/sendTemplate"
+      },
+      "last_updated": "2018-12-12T14:03:56.901Z",
+      "context_in": {
+        "type": "quick_replies"
+      },
+      "context_out": {},
+      "conditions_in": [],
+      "conditions_default_response": "",
+      "reset_context_on_exit": false,
+      "conditions_out": []
+    },
+    {
+      "variables": [],
+      "intent_name": "Welcome",
+      "responses": [
+        "Hi there, I'm a rich template testing bot, enter *button*, *generic*, or *quick reply* to get an example message."
+      ],
+      "user_says": [
+        "hi",
+        "hello",
+        "start"
+      ],
+      "last_updated": "2018-12-14T11:14:18.476Z",
+      "context_in": {},
+      "context_out": {},
+      "conditions_in": [],
+      "conditions_default_response": "",
+      "reset_context_on_exit": false,
+      "conditions_out": []
+    }
+  ],
+  "entities": {},
+  "version": 2,
+  "default_responses": [
+    "Sorry I didn't understand, can you try rephrasing the question?"
+  ],
+  "linked_skills": [],
+  "handover_reset_timeout_seconds": 0,
+  "error_threshold_handover": -1,
+  "handover_message": "Chat disabled — handed over to external agent"
+}

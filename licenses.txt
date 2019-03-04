@@ -1,0 +1,4 @@
+/usr/local/bin/license-checker -> /usr/local/lib/node_modules/license-checker/bin/license-checker
+/usr/local/lib
+└── license-checker@25.0.1 
+

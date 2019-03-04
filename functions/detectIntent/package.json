@@ -1,0 +1,9 @@
+{
+  "name": "detectIntent",
+  "private": true,
+  "version": "0.0.15",
+  "main": "function.js",
+  "dependencies": {
+    "dialogflow": "^0.6.0"
+  }
+}

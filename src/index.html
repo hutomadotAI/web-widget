@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Widget • Hu:toma AI</title>
+
+    <!-- Prefetch DNS for Third-party files -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="keywords" content="Chatbots, Deep learning, AI, Hutoma, Artificial Intelligence, Machine Learning, Siri, Cortana, Deep Learning API, AI Marketplace">
+    <meta name="description" content="Hu:toma's conversational AI platform understands your customers in their language & helps them to help themselves.">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:600,400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Extended">
+    <link rel="stylesheet" href="index.css">
+
+    <script crossorigin="anonymous" defer src="https://cdn.jsdelivr.net/npm/stackdriver-errors-js@0.5.0/dist/stackdriver-errors-concat.min.js" integrity="sha256-CsPMUS+Lh/ERYZzd9mirJxB3bms09ddYfo5Vq5GhPno="></script>
+
+    <script defer src="error_reporting.js" type="module"></script>
+
+  </head>
+
+  <body>
+
+    <div class="widget">
+      <button id="CLOSE" type="button" class="material-icons-extended">close</button>
+      <div id="MESSAGES"></div>
+      <form id="FORM">
+        <input id="INPUT" type="text" autocomplete="off" name="query" placeholder="Ask something…"/>
+        <button id="SEND" type="submit" class="material-icons-extended">send</button>
+        <button id="MIC" type="button" disabled class="material-icons-extended">mic</button>
+      </form>
+    </div>
+
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/formdata-polyfill@3.0.12/formdata.min.js" integrity="sha256-FlPo196q9kss6HIV9neaj/cZYEIQBn13CsPVQNzXSsU="></script>
+
+    <script defer src="app.js" type="module"></script>
+
+  </body>
+</html>

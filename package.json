@@ -1,0 +1,15 @@
+{
+  "name": "Hutoma-widget",
+  "version": "0.0.21",
+  "description": "Hutoma web-widget",
+  "author": "Karol <karol@hutoma.com>",
+  "private": true,
+  "devDependencies": {
+    "po2json": "0.4.5",
+    "tape": "^4.9.1"
+  },
+  "scripts": {
+    "translate": " mkdir src/local && for file in local/*.po; do po2json ''$file'' ''src/${file%.*}.json'' --format mf; done",
+    "test": "tape 'test/**/*.spec.js'"
+  }
+}

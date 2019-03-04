@@ -1,0 +1,36 @@
+# Extends ../docker-compose.yml
+#
+# To run it use --file otion with docker-compose, example:
+#
+# docker-compose --file docker-compose.yml --file test/docker-compose.yml run --rm tester
+#
+version: '3'
+
+services:
+
+  #
+  # Nginx for local development extends original server with test only
+  # configuration and hosting for dummy host page
+  #
+  # Source: https://hub.docker.com/_/nginx/
+  #
+  server:
+    volumes:
+      - ./test:/etc/nginx/html/test:ro
+      - ./test/config.js:/etc/nginx/html/widget/config.env.js
+
+  #
+  # Testing container running headless chrome browser
+  #
+  tester:
+    build:
+      context: test/
+    depends_on:
+      - server
+    environment:
+      LOG_LEVEL: debug
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: yarn run test
+

@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  #
+  # Nginx for local development
+  #
+  # Source: https://hub.docker.com/_/nginx/
+  #
+  server:
+    image: nginx:alpine
+    ports:
+      - 8443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/cert.pem:/etc/nginx/conf.d/cert.pem:ro
+      - ./nginx/cert.key:/etc/nginx/conf.d/cert.key:ro
+      - ./src:/etc/nginx/html/widget
