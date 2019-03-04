@@ -18,6 +18,8 @@ export const WIDGET_IFRAME_URL = 'https://0.0.0.0.xip.io:8443/widget/index.html'
 
 Any `*.env.js` files are excluded in `gitignore`
 
+In the nginx folder there are two empty files, cert.key and cert.pem, you need to populate these before you build for your local testing.
+
 ### Run your local widget container using Docker
 
 ```
